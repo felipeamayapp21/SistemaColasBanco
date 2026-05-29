@@ -2,6 +2,49 @@
 
 Aplicación web moderna para administrar la atención de clientes en un banco con cola prioritaria, turnos en tiempo real, roles de usuario, y reportes gráficos.
 
+## Requisitos previos
+
+- **Java 21 JDK** — [descargar](https://adoptium.net/)
+- **Node.js 18+** — [descargar](https://nodejs.org/)
+- **PostgreSQL 15+** — [descargar](https://www.postgresql.org/download/)
+
+---
+
+## Inicio rápido (manual)
+
+```bash
+# 1. Clonar
+git clone https://github.com/felipeamayapp21/SistemaColasBanco.git
+cd SistemaColasBanco
+
+# 2. Crear base de datos en PostgreSQL
+psql -U postgres -c "CREATE DATABASE banco_db;"
+psql -U postgres -d banco_db -f database/schema.sql
+psql -U postgres -d banco_db -f database/seed.sql
+
+# 3. (Opcional) Si tu contraseña de PostgreSQL no es 123456789,
+#    edita backend/src/main/resources/application.properties
+#    linea: spring.datasource.password=TU_CONTRASENA
+
+# 4. Iniciar backend (puerto 8080)
+cd backend
+.\mvnw.cmd spring-boot:run   # Windows
+# ./mvnw spring-boot:run     # Linux/Mac
+
+# 5. Iniciar frontend (otra terminal, puerto 5173)
+cd frontend
+npm install
+npm run dev
+```
+
+La app se abre en http://localhost:5173.
+
+### Inicio rápido (Windows — automático)
+
+Solo doble clic en `ARRANCAR.bat`. Crea la BD, compila el backend, instala dependencias y lanza todo.
+
+---
+
 ## Stack
 
 | Capa | Tecnología |

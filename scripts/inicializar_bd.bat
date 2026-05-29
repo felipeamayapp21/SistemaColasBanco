@@ -30,9 +30,6 @@ if errorlevel 1 (
 echo [BD] Ejecutando schema.sql...
 "%PSQL%" -h %PGHOST% -U %PGUSER% -d banco_db -f "database\schema.sql"
 
-echo [BD] Ejecutando migration_seguridad.sql (recuperacion de contrasena y documento)...
-"%PSQL%" -h %PGHOST% -U %PGUSER% -d banco_db -f "database\migration_seguridad.sql"
-
 echo [BD] Ejecutando seed.sql...
 "%PSQL%" -h %PGHOST% -U %PGUSER% -d banco_db -f "database\seed.sql"
 
