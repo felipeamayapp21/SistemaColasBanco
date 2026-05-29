@@ -1,0 +1,653 @@
+/* ================================================================
+   metro.css — BancoApp · Fluent/Metro Design System
+   Professional theme: app bar, sidebar, tiles, panels, login
+   ================================================================ */
+
+   @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+   /* ────────────────────────────────────────────────────────────────
+      DESIGN TOKENS
+      ──────────────────────────────────────────────────────────────── */
+   :root {
+     /* Brand */
+     --c-blue-900:  #003A6C;
+     --c-blue-800:  #00508F;
+     --c-blue-700:  #0063B1;
+     --c-blue-600:  #0078D4;
+     --c-blue-500:  #1A8FE3;
+     --c-blue-400:  #4BA8F0;
+     --c-blue-100:  #D0E7FF;
+     --c-blue-050:  #EBF4FF;
+   
+     /* Accent / status */
+     --c-teal:      #00B7C3;
+     --c-teal-dark: #007E87;
+     --c-green:     #107C10;
+     --c-green-lt:  #DFF6DD;
+     --c-orange:    #D83B01;
+     --c-orange-lt: #FDE7D9;
+     --c-red:       #A4262C;
+     --c-red-lt:    #FDE7E9;
+     --c-amber:     #FFB900;
+     --c-amber-lt:  #FFF4CE;
+     --c-purple:    #5C2D91;
+     --c-purple-lt: #EDE9FE;
+     --c-magenta:   #C239B3;
+   
+     /* Surface */
+     --bg:          #F3F2F1;
+     --surface:     #FFFFFF;
+     --surface-2:   #FAFAFA;
+     --surface-3:   #F3F2F1;
+   
+     /* Text */
+     --text:        #1A1A1A;
+     --text-soft:   #3B3A39;
+     --text-muted:  #605E5C;
+     --text-faint:  #A19F9D;
+     --text-on-dark:#FFFFFF;
+   
+     /* Border */
+     --border:      #E1DFDD;
+     --border-med:  #C8C6C4;
+     --border-focus:#0078D4;
+   
+     /* Shadow stack */
+     --shadow-xs:   0 1px 2px rgba(0,0,0,.06);
+     --shadow-sm:   0 2px 6px rgba(0,0,0,.07), 0 0 1px rgba(0,0,0,.05);
+     --shadow-md:   0 4px 16px rgba(0,0,0,.09), 0 1px 4px rgba(0,0,0,.06);
+     --shadow-lg:   0 8px 32px rgba(0,0,0,.12), 0 2px 8px rgba(0,0,0,.07);
+     --shadow-focus:0 0 0 3px rgba(0,120,212,.25);
+   
+     /* Layout */
+     --sidebar-width:  220px;
+     --navbar-height:  48px;
+     --radius-sm:  2px;
+     --radius:     4px;
+     --radius-md:  6px;
+   
+     /* Typography */
+     --font:  'Plus Jakarta Sans', 'Segoe UI Variable', 'Segoe UI', system-ui, sans-serif;
+   
+     /* Motion */
+     --t-fast: .12s ease;
+     --t:      .2s cubic-bezier(.4,0,.2,1);
+     --t-slow: .35s cubic-bezier(.4,0,.2,1);
+   }
+   
+   /* ────────────────────────────────────────────────────────────────
+      BASE
+      ──────────────────────────────────────────────────────────────── */
+   body {
+     font-family: var(--font) !important;
+     background: var(--bg) !important;
+     color: var(--text);
+     -webkit-font-smoothing: antialiased;
+   }
+   
+   /* ────────────────────────────────────────────────────────────────
+      APP BAR
+      ──────────────────────────────────────────────────────────────── */
+   .navbar-banco.metro-app-bar {
+     position: fixed;
+     top: 0;
+     left: 0;
+     right: 0;
+     z-index: 900;
+     height: var(--navbar-height);
+     display: flex;
+     align-items: center;
+     padding: 0 1.25rem;
+     background: var(--c-blue-700) !important;
+     background-image: none !important;
+     border-bottom: 1px solid var(--c-blue-800);
+     box-shadow: var(--shadow-sm);
+     gap: 1rem;
+   }
+   
+   .navbar-banco.metro-app-bar .brand {
+     font-family: var(--font);
+     font-weight: 700;
+     font-size: .9rem;
+     letter-spacing: .08em;
+     text-transform: uppercase;
+     color: #fff;
+     display: flex;
+     align-items: center;
+     gap: .6rem;
+     text-decoration: none;
+   }
+   
+   .navbar-banco.metro-app-bar .brand::before {
+     content: '';
+     display: block;
+     width: 20px;
+     height: 20px;
+     background: var(--c-amber);
+     clip-path: polygon(0 0,60% 0,100% 40%,100% 100%,40% 100%,0 60%);
+     flex-shrink: 0;
+   }
+   
+   .navbar-banco.metro-app-bar .brand::after {
+     display: none;
+   }
+   
+   .metro-app-bar-spacer { flex: 1; }
+   
+   .metro-user-badge {
+     display: flex;
+     align-items: center;
+     gap: .5rem;
+     background: rgba(255,255,255,.12);
+     border: 1px solid rgba(255,255,255,.18);
+     padding: .25rem .75rem .25rem .4rem;
+     font-size: .78rem;
+     font-weight: 600;
+     color: #fff;
+     cursor: pointer;
+     transition: background var(--t-fast);
+   }
+   
+   .metro-user-badge:hover { background: rgba(255,255,255,.2); }
+   
+   .metro-user-badge::before {
+     content: '';
+     width: 24px; height: 24px;
+     border-radius: 50%;
+     background: var(--c-blue-400);
+     display: block;
+     flex-shrink: 0;
+   }
+   
+   /* ────────────────────────────────────────────────────────────────
+      SIDEBAR
+      ──────────────────────────────────────────────────────────────── */
+   .sidebar.metro-sidebar {
+     position: fixed;
+     top: var(--navbar-height);
+     left: 0;
+     bottom: 0;
+     z-index: 800;
+     width: var(--sidebar-width);
+     background: #1E1E1E !important;
+     background-image: none !important;
+     border-right: none;
+     overflow-y: auto;
+     overflow-x: hidden;
+     scrollbar-width: thin;
+     scrollbar-color: rgba(255,255,255,.1) transparent;
+     display: flex;
+     flex-direction: column;
+   }
+   
+   .metro-nav-label {
+     font-size: .65rem;
+     font-weight: 700;
+     text-transform: uppercase;
+     letter-spacing: .12em;
+     color: rgba(255,255,255,.3);
+     padding: 1.25rem 1rem .4rem;
+     user-select: none;
+   }
+   
+   .sidebar.metro-sidebar .nav-link {
+     display: flex;
+     align-items: center;
+     gap: .7rem;
+     padding: .65rem 1rem;
+     margin: 0;
+     border-radius: 0;
+     border-left: 3px solid transparent;
+     color: rgba(255,255,255,.72);
+     font-size: .82rem;
+     font-weight: 500;
+     text-decoration: none;
+     transition: background var(--t-fast), color var(--t-fast), border-color var(--t-fast);
+     white-space: nowrap;
+     overflow: hidden;
+   }
+   
+   .sidebar.metro-sidebar .nav-link i {
+     font-size: 1rem;
+     width: 20px;
+     text-align: center;
+     flex-shrink: 0;
+     opacity: .8;
+     transition: opacity var(--t-fast);
+   }
+   
+   .sidebar.metro-sidebar .nav-link:hover {
+     background: rgba(255,255,255,.08);
+     color: #fff;
+     border-left-color: rgba(255,255,255,.3);
+   }
+   
+   .sidebar.metro-sidebar .nav-link:hover i { opacity: 1; }
+   
+   .sidebar.metro-sidebar .nav-link.active {
+     background: var(--c-blue-600) !important;
+     border-left-color: var(--c-amber) !important;
+     color: #fff !important;
+     font-weight: 600;
+   }
+   
+   .sidebar.metro-sidebar .nav-link.active i { opacity: 1; }
+   
+   .sidebar-footer {
+     margin-top: auto;
+     padding: 1rem;
+     border-top: 1px solid rgba(255,255,255,.08);
+     font-size: .72rem;
+     color: rgba(255,255,255,.25);
+     text-align: center;
+   }
+   
+   /* ────────────────────────────────────────────────────────────────
+      MAIN CONTENT
+      ──────────────────────────────────────────────────────────────── */
+   .main-content.metro-main {
+     margin-left: var(--sidebar-width);
+     margin-top: var(--navbar-height);
+     padding: 1.75rem 2rem;
+     min-height: calc(100vh - var(--navbar-height));
+   }
+   
+   .page-title.metro-page-title {
+     font-family: var(--font);
+     font-weight: 700;
+     font-size: 1.6rem;
+     color: var(--text);
+     display: flex;
+     align-items: center;
+     gap: .75rem;
+     margin-bottom: .35rem;
+   }
+   
+   .page-title.metro-page-title::before {
+     content: '';
+     display: block;
+     width: 4px;
+     height: 1.4em;
+     background: var(--c-blue-600);
+     flex-shrink: 0;
+   }
+   
+   .page-subtitle {
+     color: var(--text-muted);
+     font-size: .85rem;
+     margin-bottom: 1.75rem;
+     padding-left: calc(4px + .75rem);
+   }
+   
+   /* ────────────────────────────────────────────────────────────────
+      METRO TILE GRID
+      ──────────────────────────────────────────────────────────────── */
+   .metro-tile-grid {
+     display: grid;
+     grid-template-columns: repeat(4, 1fr);
+     gap: 6px;
+     margin-bottom: 1.75rem;
+   }
+   
+   @media (max-width: 1200px) {
+     .metro-tile-grid { grid-template-columns: repeat(3, 1fr); }
+   }
+   
+   @media (max-width: 768px) {
+     .metro-tile-grid { grid-template-columns: repeat(2, 1fr); }
+   }
+   
+   .metro-tile {
+     display: flex;
+     flex-direction: column;
+     justify-content: flex-end;
+     min-height: 130px;
+     padding: 1rem 1.1rem;
+     color: #fff;
+     text-decoration: none;
+     border: none;
+     cursor: pointer;
+     transition: filter var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
+     position: relative;
+     overflow: hidden;
+     user-select: none;
+   }
+   
+   /* Subtle shine overlay */
+   .metro-tile::after {
+     content: '';
+     position: absolute;
+     top: 0; left: 0; right: 0;
+     height: 50%;
+     background: linear-gradient(180deg, rgba(255,255,255,.1) 0%, transparent 100%);
+     pointer-events: none;
+   }
+   
+   .metro-tile:hover {
+     filter: brightness(1.1);
+     transform: translateY(-3px);
+     box-shadow: var(--shadow-md);
+     color: #fff;
+   }
+   
+   .metro-tile:active {
+     transform: translateY(-1px);
+     filter: brightness(.97);
+   }
+   
+   .metro-tile i {
+     font-size: 1.75rem;
+     opacity: .85;
+     margin-bottom: .6rem;
+   }
+   
+   .metro-tile .metro-tile-label {
+     font-size: .68rem;
+     font-weight: 700;
+     text-transform: uppercase;
+     letter-spacing: .07em;
+     opacity: .85;
+     line-height: 1.3;
+   }
+   
+   .metro-tile .metro-tile-value {
+     font-size: 1.9rem;
+     font-weight: 800;
+     line-height: 1;
+     margin-top: .15rem;
+   }
+   
+   /* Tile colors */
+   .metro-tile.tile-blue    { background: var(--c-blue-600); }
+   .metro-tile.tile-teal    { background: var(--c-teal); }
+   .metro-tile.tile-green   { background: var(--c-green); }
+   .metro-tile.tile-orange  { background: var(--c-orange); }
+   .metro-tile.tile-purple  { background: var(--c-purple); }
+   .metro-tile.tile-magenta { background: var(--c-magenta); }
+   .metro-tile.tile-dark    { background: #2B2B2B; }
+   .metro-tile.tile-amber   {
+     background: var(--c-amber);
+     color: var(--text);
+   }
+   .metro-tile.tile-amber .metro-tile-label,
+   .metro-tile.tile-amber .metro-tile-value { color: var(--text); }
+   
+   .metro-tile.tile-wide { grid-column: span 2; }
+   
+   @media (max-width: 576px) {
+     .metro-tile.tile-wide { grid-column: span 1; }
+   }
+   
+   /* ────────────────────────────────────────────────────────────────
+      CARDS / PANELS
+      ──────────────────────────────────────────────────────────────── */
+   .card-banco.metro-panel {
+     background: var(--surface);
+     border: 1px solid var(--border);
+     border-radius: var(--radius-sm);
+     box-shadow: var(--shadow-sm);
+     overflow: hidden;
+   }
+   
+   .card-banco.metro-panel .card-header {
+     background: var(--surface-2);
+     border-bottom: 1px solid var(--border);
+     padding: .85rem 1.25rem;
+     font-weight: 700;
+     font-size: .85rem;
+     text-transform: uppercase;
+     letter-spacing: .06em;
+     color: var(--text-soft);
+     display: flex;
+     align-items: center;
+     gap: .6rem;
+   }
+   
+   .card-banco.metro-panel .card-header i {
+     color: var(--c-blue-600);
+     font-size: 1rem;
+   }
+   
+   /* Stat card */
+   .card-stat.metro-stat {
+     background: var(--surface);
+     border: 1px solid var(--border);
+     border-top: 3px solid var(--c-blue-600);
+     border-radius: var(--radius-sm);
+     padding: 1.1rem 1.25rem;
+     box-shadow: var(--shadow-xs);
+     transition: box-shadow var(--t), transform var(--t);
+     cursor: default;
+   }
+   
+   .card-stat.metro-stat:hover {
+     box-shadow: var(--shadow-md);
+     transform: translateY(-2px);
+   }
+   
+   .card-stat.metro-stat::before { display: none; }
+   
+   .metro-stat-label {
+     font-size: .72rem;
+     font-weight: 700;
+     text-transform: uppercase;
+     letter-spacing: .07em;
+     color: var(--text-muted);
+     margin-bottom: .35rem;
+   }
+   
+   .metro-stat-value {
+     font-size: 1.7rem;
+     font-weight: 800;
+     color: var(--text);
+     line-height: 1.1;
+   }
+   
+   .metro-stat-delta {
+     font-size: .75rem;
+     font-weight: 600;
+     margin-top: .3rem;
+   }
+   
+   .metro-stat-delta.up   { color: var(--c-green); }
+   .metro-stat-delta.down { color: var(--c-red); }
+   
+   /* Turno badge */
+   .turno-badge.metro-turno {
+     background: var(--c-blue-700) !important;
+     background-image: none !important;
+     border-radius: var(--radius-sm);
+     border-left: 5px solid var(--c-amber);
+     padding: 1rem 1.4rem;
+     color: #fff;
+     box-shadow: var(--shadow-sm);
+   }
+   
+   /* ────────────────────────────────────────────────────────────────
+      REPORTES TILES
+      ──────────────────────────────────────────────────────────────── */
+   .metro-report-tile {
+     min-height: 180px;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     gap: .75rem;
+     padding: 2rem;
+     color: #fff;
+     border: none;
+     width: 100%;
+     position: relative;
+     overflow: hidden;
+     transition: filter var(--t-fast), transform var(--t);
+     cursor: pointer;
+   }
+   
+   .metro-report-tile::after {
+     content: '';
+     position: absolute;
+     inset: 0;
+     background: linear-gradient(135deg, rgba(255,255,255,.1) 0%, transparent 60%);
+     pointer-events: none;
+   }
+   
+   .metro-report-tile:hover {
+     filter: brightness(1.07);
+     transform: translateY(-3px);
+     color: #fff;
+     box-shadow: var(--shadow-md);
+   }
+   
+   .metro-report-tile i { font-size: 2.5rem; opacity: .9; }
+   .metro-report-tile span { font-size: .85rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
+   .metro-report-tile.pdf   { background: linear-gradient(135deg, #C41E3A 0%, #A4262C 100%); }
+   .metro-report-tile.excel { background: linear-gradient(135deg, #1E7B34 0%, #107C10 100%); }
+   
+   /* ────────────────────────────────────────────────────────────────
+      LOGIN
+      ──────────────────────────────────────────────────────────────── */
+   .login-page.metro-login {
+     background: var(--c-blue-800) !important;
+     background-image: linear-gradient(150deg, var(--c-blue-900) 0%, var(--c-blue-700) 55%, var(--c-teal-dark) 100%) !important;
+     min-height: 100vh;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     padding: 1rem;
+   }
+   
+   .metro-login-layout {
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+     max-width: 860px;
+     width: 100%;
+     min-height: 500px;
+     box-shadow: var(--shadow-lg);
+     overflow: hidden;
+   }
+   
+   @media (max-width: 768px) {
+     .metro-login-layout   { grid-template-columns: 1fr; max-width: 420px; }
+     .metro-login-brand    { display: none !important; }
+   }
+   
+   .metro-login-brand {
+     background: rgba(0,0,0,.2);
+     padding: 2.5rem;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     color: #fff;
+     position: relative;
+     overflow: hidden;
+   }
+   
+   .metro-login-brand::before {
+     content: '';
+     position: absolute;
+     top: -60px; right: -60px;
+     width: 200px; height: 200px;
+     border: 30px solid rgba(255,255,255,.05);
+     border-radius: 50%;
+   }
+   
+   .metro-login-brand::after {
+     content: '';
+     position: absolute;
+     bottom: -80px; left: -40px;
+     width: 240px; height: 240px;
+     border: 40px solid rgba(255,255,255,.04);
+     border-radius: 50%;
+   }
+   
+   .metro-login-brand h1 {
+     font-size: 1.9rem;
+     font-weight: 800;
+     margin-bottom: .5rem;
+     position: relative;
+     z-index: 1;
+   }
+   
+   .metro-login-brand p {
+     opacity: .8;
+     font-size: .9rem;
+     line-height: 1.6;
+     position: relative;
+     z-index: 1;
+   }
+   
+   .metro-login-tiles {
+     display: grid;
+     grid-template-columns: repeat(4, 1fr);
+     gap: 5px;
+     margin-top: 1.75rem;
+     position: relative;
+     z-index: 1;
+   }
+   
+   .metro-login-tiles span {
+     height: 42px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     font-size: 1rem;
+     font-weight: 800;
+     background: rgba(255,255,255,.1);
+     transition: background var(--t-fast);
+   }
+   
+   .metro-login-tiles span:hover { background: rgba(255,255,255,.18); }
+   
+   .login-card.metro-login-card {
+     border-radius: 0;
+     max-width: none;
+     animation: none;
+     box-shadow: none;
+     background: var(--surface);
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     padding: 2.5rem;
+   }
+   
+   .metro-login-card .login-logo {
+     color: var(--c-blue-600);
+     font-size: 1.75rem;
+     font-weight: 800;
+     letter-spacing: .06em;
+     text-transform: uppercase;
+     margin-bottom: 1.5rem;
+     display: flex;
+     align-items: center;
+     gap: .6rem;
+   }
+   
+   .metro-login-card .login-logo::before {
+     content: '';
+     display: block;
+     width: 18px; height: 18px;
+     background: var(--c-amber);
+     clip-path: polygon(0 0,60% 0,100% 40%,100% 100%,40% 100%,0 60%);
+   }
+   
+   /* ────────────────────────────────────────────────────────────────
+      RESPONSIVE
+      ──────────────────────────────────────────────────────────────── */
+   @media (max-width: 768px) {
+     .main-content.metro-main {
+       margin-left: 0;
+       padding: 1rem;
+     }
+   
+     .sidebar.metro-sidebar {
+       width: 260px;
+       transform: translateX(-100%);
+       transition: transform var(--t-slow);
+       z-index: 1000;
+     }
+   
+     .sidebar.metro-sidebar.open {
+       transform: translateX(0);
+       box-shadow: var(--shadow-lg);
+     }
+   }
